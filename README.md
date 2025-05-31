@@ -76,6 +76,14 @@ We maintain high code coverage standards. All new features must include appropri
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Code Coverage
+
+We maintain high code coverage standards. All new features must include appropriate tests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Features
 
 - Responsive layouts for web and iPad
@@ -130,6 +138,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    gh pr create --title "Your PR title" --body "Your PR description"
    ```
 
+=======
+>>>>>>> origin/main
 ## Development
 
 The project uses:
