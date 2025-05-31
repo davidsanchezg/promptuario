@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-import 'widgets/responsive_scaffold.dart';
+
 import 'widgets/product_card.dart';
+import 'widgets/responsive_scaffold.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           _selectedIndex = index;
         });
       },
-      appBar: const AppBar(
+      appBar: AppBar(
         title: Text('Promptuario'),
       ),
       body: LayoutBuilder(
