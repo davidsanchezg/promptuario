@@ -6,7 +6,7 @@ class ResponsiveScaffold extends StatelessWidget {
   final List<NavigationRailDestination> destinations;
   final int selectedIndex;
   final ValueChanged<int> onDestinationSelected;
-  final Widget? appBar;
+  final PreferredSizeWidget? appBar;
   final Widget? floatingActionButton;
 
   const ResponsiveScaffold({
