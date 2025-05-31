@@ -19,6 +19,7 @@ jobs:
             platform: ios
 
     name: Flutter ${{ matrix.flutter }} on ${{ matrix.os }} for ${{ matrix.platform }}
+    retries: 3
 
     steps:
     - name: Checkout code
@@ -49,7 +50,7 @@ jobs:
         flutter test --machine > test_results.json
         cat test_results.json
       continue-on-error: false
-      retries: 3
+
 
     - name: Build web
       if: matrix.platform == 'web'
