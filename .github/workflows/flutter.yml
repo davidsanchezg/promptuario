@@ -17,9 +17,11 @@ jobs:
         exclude:
           - os: ubuntu-latest
             platform: ios
+      max-parallel: 2
+      fail-fast: false
+      retries: 3
 
     name: Flutter ${{ matrix.flutter }} on ${{ matrix.os }} for ${{ matrix.platform }}
-    retries: 3
 
     steps:
     - name: Checkout code
