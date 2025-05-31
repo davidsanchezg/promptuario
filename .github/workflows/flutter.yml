@@ -19,7 +19,8 @@ jobs:
             platform: ios
       max-parallel: 2
       fail-fast: false
-      retries: 3
+
+    retries: 3
 
     name: Flutter ${{ matrix.flutter }} on ${{ matrix.os }} for ${{ matrix.platform }}
 
