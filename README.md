@@ -3,7 +3,9 @@
 A responsive Flutter application with adaptive layouts for web and iPad.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![codecov](https://codecov.io/gh/davidsanchezg/promptuario/branch/main/graph/badge.svg?token=YOUR_TOKEN)](https://codecov.io/gh/davidsanchezg/promptuario)
+
+<!-- Optional Codecov badge - Uncomment and replace YOUR_TOKEN once you have a Codecov token -->
+<!-- [![codecov](https://codecov.io/gh/davidsanchezg/promptuario/branch/main/graph/badge.svg?token=YOUR_TOKEN)](https://codecov.io/gh/davidsanchezg/promptuario) -->
 
 ## Features
 
