@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'widgets/responsive_scaffold.dart';
+import 'widgets/product_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -52,11 +53,7 @@ class _HomePageState extends State<HomePage> {
               ),
               itemCount: _items.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: Center(
-                    child: Text(_items[index]),
-                  ),
-                );
+                return ProductCard(title: _items[index]);
               },
             );
           } else {
@@ -65,12 +62,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(16),
               itemCount: _items.length,
               itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  child: ListTile(
-                    title: Text(_items[index]),
-                  ),
-                );
+                return ProductCard(title: _items[index]);
               },
             );
           }
