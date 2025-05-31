@@ -31,8 +31,11 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Run tests
-      run: flutter test
+    - name: Run tests with coverage
+      run: |
+        flutter test --coverage
+        genhtml coverage/lcov.info -o coverage/html
+        ls -la coverage/html/
 
     - name: Build web
       if: matrix.platform == 'web'
@@ -59,6 +62,20 @@ jobs:
       with:
         name: ios-build
         path: build/ios/
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v3
+      if: matrix.os == 'ubuntu-latest'
+      with:
+        name: coverage-report
+        path: coverage/html/
+
+    - name: Upload lcov.info
+      uses: actions/upload-artifact@v3
+      if: matrix.os == 'ubuntu-latest'
+      with:
+        name: lcov-info
+        path: coverage/lcov.info
 
     # Linting
     - name: Run Flutter analyze
