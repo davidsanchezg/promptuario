@@ -1,16 +1,53 @@
-# promptuario
+# Promptuario
 
-A new Flutter project.
+A responsive Flutter application with adaptive layouts for web and iPad.
 
-## Getting Started
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Responsive layouts for web and iPad
+- Adaptive grid and list views
+- NavigationRail for tablet and desktop
+- Material 3 design system
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Prerequisites
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter SDK 3.8.1 or higher
+- Dart SDK
+- Web browser (Chrome recommended)
+- Xcode (for iOS/iPad development)
+
+## Setup Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/davidsanchezg/promptuario.git
+   cd promptuario
+   ```
+
+2. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+
+3. Run the app:
+   - For web:
+     ```bash
+     flutter run -d chrome
+     ```
+   - For iPad:
+     ```bash
+     flutter run -d ios
+     ```
+
+## Development
+
+The project uses:
+- `responsive_builder` for adaptive layouts
+- Material 3 design system
+- Dart 3.8.1
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
