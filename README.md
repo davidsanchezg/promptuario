@@ -20,9 +20,9 @@ A responsive Flutter application with adaptive layouts for web and iPad.
 
 ## Setup Instructions
 
-1. Clone the repository:
+1. Clone the repository using GitHub CLI:
    ```bash
-   git clone https://github.com/davidsanchezg/promptuario.git
+   gh repo clone davidsanchezg/promptuario
    cd promptuario
    ```
 
@@ -40,6 +40,23 @@ A responsive Flutter application with adaptive layouts for web and iPad.
      ```bash
      flutter run -d ios
      ```
+
+4. Create a new branch for your changes:
+   ```bash
+   gh branch create feature/your-feature-name
+   ```
+
+5. Push your changes:
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   git push origin feature/your-feature-name
+   ```
+
+6. Create a pull request:
+   ```bash
+   gh pr create --title "Your PR title" --body "Your PR description"
+   ```
 
 ## Development
 
