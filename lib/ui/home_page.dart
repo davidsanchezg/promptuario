@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         });
       },
       appBar: AppBar(
-        title: Text('Promptuario'),
+        title: const Text('Promptuario'),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
