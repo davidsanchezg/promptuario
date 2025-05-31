@@ -1,0 +1,73 @@
+name: Flutter CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flutter: [ '3.10.0' ]
+        os: [ ubuntu-latest, macos-latest ]
+        platform: [ web, ios ]
+        exclude:
+          - os: ubuntu-latest
+            platform: ios
+
+    name: Flutter ${{ matrix.flutter }} on ${{ matrix.os }} for ${{ matrix.platform }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ matrix.flutter }}
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Build web
+      if: matrix.platform == 'web'
+      run: |
+        flutter build web
+        ls build/web/
+
+    - name: Build iOS
+      if: matrix.platform == 'ios' && matrix.os == 'macos-latest'
+      run: |
+        flutter build ios --release
+        ls build/ios/
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      if: matrix.platform == 'web'
+      with:
+        name: web-build
+        path: build/web/
+
+    - name: Upload iOS build artifacts
+      uses: actions/upload-artifact@v3
+      if: matrix.platform == 'ios' && matrix.os == 'macos-latest'
+      with:
+        name: ios-build
+        path: build/ios/
+
+    # Linting
+    - name: Run Flutter analyze
+      run: flutter analyze
+
+    # Flutter format
+    - name: Run Flutter format
+      run: flutter format .
+
+    # Flutter doctor
+    - name: Run Flutter doctor
+      run: flutter doctor -v
