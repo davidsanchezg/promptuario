@@ -1,0 +1,103 @@
+name: Flutter CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        flutter: [ '3.10.0' ]
+        os: [ ubuntu-latest, macos-latest ]
+        platform: [ web, ios ]
+        exclude:
+          - os: ubuntu-latest
+            platform: ios
+
+    name: Flutter ${{ matrix.flutter }} on ${{ matrix.os }} for ${{ matrix.platform }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ matrix.flutter }}
+
+    - name: Flutter doctor
+      run: |
+        echo "Running Flutter doctor..."
+        flutter doctor -v
+
+    - name: Install dependencies
+      run: |
+        echo "Installing dependencies..."
+        flutter pub get
+        flutter pub deps
+
+    - name: Run tests
+      if: matrix.platform == 'web'
+      run: |
+        echo "Running tests..."
+        flutter test --machine > test_results.json
+        cat test_results.json
+      continue-on-error: false
+      retries: 3
+
+    - name: Build web
+      if: matrix.platform == 'web'
+      run: |
+        echo "Building web version..."
+        flutter build web --verbose
+        ls -la build/web/
+
+    - name: Build iOS
+      if: matrix.platform == 'ios' && matrix.os == 'macos-latest'
+      run: |
+        echo "Building iOS version..."
+        flutter build ios --release --verbose
+        ls -la build/ios/
+
+    - name: Upload web build artifacts
+      uses: actions/upload-artifact@v3
+      if: matrix.platform == 'web' && success()
+      with:
+        name: web-build
+        path: build/web/
+
+    - name: Upload iOS build artifacts
+      uses: actions/upload-artifact@v3
+      if: matrix.platform == 'ios' && matrix.os == 'macos-latest' && success()
+      with:
+        name: ios-build
+        path: build/ios/
+
+    # Linting
+    - name: Run Flutter analyze
+      run: |
+        echo "Running Flutter analyze..."
+        flutter analyze
+
+    # Flutter format
+    - name: Run Flutter format
+      run: |
+        echo "Running Flutter format..."
+        flutter format .
+
+    # Cache dependencies
+    - name: Cache Flutter packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.pub-cache/hosted
+          ~/.pub-cache/git
+        key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-flutter-

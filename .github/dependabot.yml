@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    target-branch: "main"
+    labels:
+      - "dependencies"
+      - "automated"
+    reviewers:
+      - "davidsanchezg"
+    assignees:
+      - "davidsanchezg"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    versioning-strategy: "increase"
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    ignore:
+      - dependency-name: "flutter"
+        update-types: ["version-update:semver-major"]
