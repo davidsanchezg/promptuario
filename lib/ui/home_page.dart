@@ -36,8 +36,8 @@ class _HomePageState extends State<HomePage> {
           _selectedIndex = index;
         });
       },
-      appBar: const AppBar(
-        title: Text('Promptuario'),
+      appBar: AppBar(
+        title: const Text('Promptuario'),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
