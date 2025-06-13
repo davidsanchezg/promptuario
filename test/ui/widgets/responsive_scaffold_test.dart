@@ -33,8 +33,8 @@ void main() {
 
     testWidgets('renders mobile layout with AppBar', (tester) async {
       // Set a small screen size to trigger mobile layout
-      tester.binding.window.physicalSizeTestValue = const Size(300, 600);
-      tester.binding.window.devicePixelRatioTestValue = 1.0;
+      tester.view.physicalSize = const Size(300, 600);
+      tester.view.devicePixelRatio = 1.0;
 
       await tester.pumpWidget(
         MaterialApp(
