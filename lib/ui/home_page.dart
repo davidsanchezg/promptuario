@@ -28,6 +28,17 @@ class _HomePageState extends State<HomePage> {
       ),
     ];
 
+    // Sample product data
+    final List<Map<String, dynamic>> sampleProducts = List.generate(10, (index) => {
+      'title': 'Sample Product ${index + 1}',
+      'seller': 'Seller ${String.fromCharCode(65 + (index % 3))}',
+      'price': 9.99 + (index * 5.0),
+      'rating': 3.5 + (index % 5) * 0.5,
+      'mediaUrl': 'https://picsum.photos/seed/$index/600/400',
+      'isVideo': index % 3 == 0,
+      'thumbnailUrl': 'https://picsum.photos/seed/thumb$index/300/200',
+    });
+
     return ResponsiveScaffold(
       destinations: destinations,
       selectedIndex: _selectedIndex,
@@ -47,22 +58,43 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                childAspectRatio: 1.5,
+                childAspectRatio: 0.7,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
-              itemCount: _items.length,
+              itemCount: sampleProducts.length,
               itemBuilder: (context, index) {
-                return ProductCard(title: _items[index]);
+                final product = sampleProducts[index];
+                return ProductCard(
+                  title: product['title'],
+                  seller: product['seller'],
+                  price: product['price'],
+                  rating: product['rating'],
+                  mediaUrl: product['mediaUrl'],
+                  isVideo: product['isVideo'],
+                  thumbnailUrl: product['thumbnailUrl'],
+                );
               },
             );
           } else {
             // Tablet and mobile view - single column list
             return ListView.builder(
               padding: const EdgeInsets.all(16),
-              itemCount: _items.length,
+              itemCount: sampleProducts.length,
               itemBuilder: (context, index) {
-                return ProductCard(title: _items[index]);
+                final product = sampleProducts[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: ProductCard(
+                    title: product['title'],
+                    seller: product['seller'],
+                    price: product['price'],
+                    rating: product['rating'],
+                    mediaUrl: product['mediaUrl'],
+                    isVideo: product['isVideo'],
+                    thumbnailUrl: product['thumbnailUrl'],
+                  ),
+                );
               },
             );
           }
