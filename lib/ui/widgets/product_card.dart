@@ -22,7 +22,7 @@ class ProductCard extends StatefulWidget {
     this.isVideo = false,
     this.thumbnailUrl,
     this.margin,
-  }) : super(key: key);
+  });
 
   @override
   State<ProductCard> createState() => _ProductCardState();
