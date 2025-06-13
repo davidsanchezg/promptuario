@@ -57,7 +57,5 @@ void main() {
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.text('Test Title'), findsOneWidget);
     });
-
-
   });
 }

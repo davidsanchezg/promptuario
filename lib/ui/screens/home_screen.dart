@@ -45,7 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
       'price': 49.99,
       'rating': 4.9,
       'category': 'Development',
-      'mediaUrl': 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjFtbjZlc3l2eWxwZ2NxZzV4dWt4aGd3Y2JqZ2VqY2VnZ3V4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKtq7mQxJmQx9K0/giphy.gif',
+      'mediaUrl':
+          'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjFtbjZlc3l2eWxwZ2NxZzV4dWt4aGd3Y2JqZ2VqY2VnZ3V4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKtq7mQxJmQx9K0/giphy.gif',
       'thumbnailUrl': 'https://picsum.photos/seed/code-assistant-thumb/300/200',
       'isVideo': true,
     },
@@ -111,10 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'Promptuario',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 24),
         ),
         actions: [
           IconButton(
@@ -180,10 +178,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ProductCard(
                       title: product['title'],
                       price: product['price'],
-                      rating: product['rating'] is double ? product['rating'] : (product['rating'] as num).toDouble(),
+                      rating: product['rating'] is double
+                          ? product['rating']
+                          : (product['rating'] as num).toDouble(),
                       seller: product['seller'],
-                      mediaUrl: product['mediaUrl'] ?? 'https://picsum.photos/seed/featured-$index/600/400',
-                      thumbnailUrl: product['thumbnailUrl'] ?? 'https://picsum.photos/seed/featured-thumb-$index/300/200',
+                      mediaUrl:
+                          product['mediaUrl'] ??
+                          'https://picsum.photos/seed/featured-$index/600/400',
+                      thumbnailUrl:
+                          product['thumbnailUrl'] ??
+                          'https://picsum.photos/seed/featured-thumb-$index/300/200',
                       isVideo: product['isVideo'] == true,
                       margin: const EdgeInsets.only(right: 16),
                     ),
@@ -211,11 +215,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               itemCount: 8,
               itemBuilder: (context, index) {
-                final product = _featuredProducts[index % _featuredProducts.length];
+                final product =
+                    _featuredProducts[index % _featuredProducts.length];
                 return ProductCard(
                   title: product['title'],
-                  price: product['price'] is double ? product['price'] : double.tryParse(product['price'] ?? '0') ?? 0.0,
-                  rating: product['rating'] is double ? product['rating'] : (product['rating'] as num).toDouble(),
+                  price: product['price'] is double
+                      ? product['price']
+                      : double.tryParse(product['price'] ?? '0') ?? 0.0,
+                  rating: product['rating'] is double
+                      ? product['rating']
+                      : (product['rating'] as num).toDouble(),
                   seller: product['seller'],
                   mediaUrl: product['mediaUrl'],
                   thumbnailUrl: product['thumbnailUrl'],

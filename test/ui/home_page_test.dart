@@ -8,11 +8,7 @@ void main() {
   group('HomePage', () {
     testWidgets('renders ProductCards', (tester) async {
       await mockNetworkImages(() async {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: const HomePage(),
-          ),
-        );
+        await tester.pumpWidget(MaterialApp(home: const HomePage()));
 
         // Wait for the widget to be rendered
         await tester.pumpAndSettle();
@@ -30,42 +26,36 @@ void main() {
         tester.view.physicalSize = const Size(300, 600);
         tester.view.devicePixelRatio = 1.0;
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: const HomePage(),
-          ),
-        );
+        await tester.pumpWidget(MaterialApp(home: const HomePage()));
 
         // Wait for the widget to be rendered
         await tester.pumpAndSettle();
-        
+
         // Verify AppBar is present
         expect(find.byType(AppBar), findsOneWidget);
         expect(find.text('Promptuario'), findsOneWidget);
 
         // Verify list view is present
         expect(find.byType(ListView), findsOneWidget);
-        
+
         // Verify at least one product card is rendered
         expect(find.byType(ProductCard), findsWidgets);
-        
+
         // Verify we can find some product titles
         expect(find.text('Sample Product 1'), findsOneWidget);
         expect(find.text('Sample Product 2'), findsOneWidget);
       });
     });
 
-    testWidgets('updates selected index when destination is tapped', (tester) async {
+    testWidgets('updates selected index when destination is tapped', (
+      tester,
+    ) async {
       await mockNetworkImages(() async {
         // Set a large screen size to ensure NavigationRail is visible
         tester.view.physicalSize = const Size(1200, 800);
         tester.view.devicePixelRatio = 1.0;
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: const HomePage(),
-          ),
-        );
+        await tester.pumpWidget(MaterialApp(home: const HomePage()));
 
         // Wait for the widget to be rendered
         await tester.pumpAndSettle();

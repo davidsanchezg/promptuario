@@ -55,9 +55,9 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: GoogleFonts.interTextTheme(
           Theme.of(context).textTheme.apply(
-                bodyColor: Colors.black87,
-                displayColor: Colors.black87,
-              ),
+            bodyColor: Colors.black87,
+            displayColor: Colors.black87,
+          ),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Color(0xFF4F46E5),

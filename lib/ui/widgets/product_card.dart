@@ -42,25 +42,29 @@ class _ProductCardState extends State<ProductCard> {
         _isVideoInitialized = false;
         _controller = null;
       } else {
-        _controller = VideoPlayerController.networkUrl(
-          Uri.parse(widget.mediaUrl),
-          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
-        )..initialize().then((_) {
-            if (mounted) {
-              setState(() {
-                _isVideoInitialized = true;
-              });
-            }
-            _controller?.setLooping(true);
-            _controller?.setVolume(0);
-          }).catchError((error) {
-            // If video fails to load, fall back to image
-            if (mounted) {
-              setState(() {
-                _isVideoInitialized = false;
-              });
-            }
-          });
+        _controller =
+            VideoPlayerController.networkUrl(
+                Uri.parse(widget.mediaUrl),
+                videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+              )
+              ..initialize()
+                  .then((_) {
+                    if (mounted) {
+                      setState(() {
+                        _isVideoInitialized = true;
+                      });
+                    }
+                    _controller?.setLooping(true);
+                    _controller?.setVolume(0);
+                  })
+                  .catchError((error) {
+                    // If video fails to load, fall back to image
+                    if (mounted) {
+                      setState(() {
+                        _isVideoInitialized = false;
+                      });
+                    }
+                  });
       }
     } else {
       _controller = null;
@@ -116,7 +120,9 @@ class _ProductCardState extends State<ProductCard> {
           boxShadow: _isHovered
               ? [
                   BoxShadow(
-                    color: Colors.black.withAlpha(20), // Equivalent to black with 0.08 opacity
+                    color: Colors.black.withAlpha(
+                      20,
+                    ), // Equivalent to black with 0.08 opacity
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -128,7 +134,9 @@ class _ProductCardState extends State<ProductCard> {
           children: [
             // Media (Image or Video)
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(12),
+              ),
               child: SizedBox(
                 height: 160,
                 width: double.infinity,
@@ -143,32 +151,43 @@ class _ProductCardState extends State<ProductCard> {
                                   ? widget.mediaUrl
                                   : (widget.thumbnailUrl ?? widget.mediaUrl),
                               fit: BoxFit.cover,
-                              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                                if (wasSynchronouslyLoaded) return child;
-                                return AnimatedOpacity(
-                                  opacity: frame == null ? 0 : 1,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeOut,
-                                  child: child,
-                                );
-                              },
-                              errorBuilder: (context, error, stackTrace) => _buildErrorPlaceholder(),
+                              frameBuilder:
+                                  (
+                                    context,
+                                    child,
+                                    frame,
+                                    wasSynchronouslyLoaded,
+                                  ) {
+                                    if (wasSynchronouslyLoaded) return child;
+                                    return AnimatedOpacity(
+                                      opacity: frame == null ? 0 : 1,
+                                      duration: const Duration(
+                                        milliseconds: 500,
+                                      ),
+                                      curve: Curves.easeOut,
+                                      child: child,
+                                    );
+                                  },
+                              errorBuilder: (context, error, stackTrace) =>
+                                  _buildErrorPlaceholder(),
                             )
                           : _isVideoInitialized && _controller != null
-                              ? AspectRatio(
-                                  aspectRatio: _controller!.value.aspectRatio,
-                                  child: VideoPlayer(_controller!),
-                                )
-                              : Image.network(
-                                  widget.thumbnailUrl ?? widget.mediaUrl,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) => _buildErrorPlaceholder(),
-                                )
+                          ? AspectRatio(
+                              aspectRatio: _controller!.value.aspectRatio,
+                              child: VideoPlayer(_controller!),
+                            )
+                          : Image.network(
+                              widget.thumbnailUrl ?? widget.mediaUrl,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  _buildErrorPlaceholder(),
+                            )
                     else
                       Image.network(
                         widget.mediaUrl,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => _buildErrorPlaceholder(),
+                        errorBuilder: (context, error, stackTrace) =>
+                            _buildErrorPlaceholder(),
                       ),
                     // Video indicator
                     if (widget.isVideo)
@@ -181,7 +200,11 @@ class _ProductCardState extends State<ProductCard> {
                             color: Colors.black54,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.play_arrow, color: Colors.white, size: 16),
+                          child: const Icon(
+                            Icons.play_arrow,
+                            color: Colors.white,
+                            size: 16,
+                          ),
                         ),
                       ),
                   ],
@@ -225,9 +248,10 @@ class _ProductCardState extends State<ProductCard> {
                       // Rating
                       Row(
                         children: [
-                          Icon(Icons.star_rounded, 
-                            color: Colors.amber[600], 
-                            size: 16
+                          Icon(
+                            Icons.star_rounded,
+                            color: Colors.amber[600],
+                            size: 16,
                           ),
                           const SizedBox(width: 2),
                           Text(

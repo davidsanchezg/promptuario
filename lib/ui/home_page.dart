@@ -27,15 +27,18 @@ class _HomePageState extends State<HomePage> {
     ];
 
     // Sample product data
-    final List<Map<String, dynamic>> sampleProducts = List.generate(10, (index) => {
-      'title': 'Sample Product ${index + 1}',
-      'seller': 'Seller ${String.fromCharCode(65 + (index % 3))}',
-      'price': 9.99 + (index * 5.0),
-      'rating': 3.5 + (index % 5) * 0.5,
-      'mediaUrl': 'https://picsum.photos/seed/$index/600/400',
-      'isVideo': index % 3 == 0,
-      'thumbnailUrl': 'https://picsum.photos/seed/thumb$index/300/200',
-    });
+    final List<Map<String, dynamic>> sampleProducts = List.generate(
+      10,
+      (index) => {
+        'title': 'Sample Product ${index + 1}',
+        'seller': 'Seller ${String.fromCharCode(65 + (index % 3))}',
+        'price': 9.99 + (index * 5.0),
+        'rating': 3.5 + (index % 5) * 0.5,
+        'mediaUrl': 'https://picsum.photos/seed/$index/600/400',
+        'isVideo': index % 3 == 0,
+        'thumbnailUrl': 'https://picsum.photos/seed/thumb$index/300/200',
+      },
+    );
 
     return ResponsiveScaffold(
       destinations: destinations,
@@ -45,9 +48,7 @@ class _HomePageState extends State<HomePage> {
           _selectedIndex = index;
         });
       },
-      appBar: AppBar(
-        title: const Text('Promptuario'),
-      ),
+      appBar: AppBar(title: const Text('Promptuario')),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth >= 1024) {

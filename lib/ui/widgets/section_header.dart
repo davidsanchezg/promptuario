@@ -21,16 +21,10 @@ class SectionHeader extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           if (actionText != null)
-            TextButton(
-              onPressed: onActionPressed,
-              child: Text(actionText!),
-            ),
+            TextButton(onPressed: onActionPressed, child: Text(actionText!)),
         ],
       ),
     );

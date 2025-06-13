@@ -43,9 +43,6 @@ class ResponsiveScaffold extends StatelessWidget {
   }
 
   Widget _buildMobileLayout() {
-    return Scaffold(
-      appBar: appBar,
-      body: body,
-    );
+    return Scaffold(appBar: appBar, body: body);
   }
 }
