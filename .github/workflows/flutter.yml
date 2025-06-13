@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        flutter: [ '3.10.0' ]
+        flutter: [ '3.16.0' ]
         os: [ ubuntu-latest, macos-latest ]
         platform: [ web, ios ]
         exclude:
