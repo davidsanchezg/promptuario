@@ -7,12 +7,12 @@ class SearchBarWidget extends StatelessWidget {
   final VoidCallback onSearchPressed;
 
   const SearchBarWidget({
-    Key? key,
+    super.key,
     required this.controller,
     this.hintText = 'Search for products...',
     required this.onChanged,
     required this.onSearchPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SearchBarWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withAlpha(13), // Equivalent to 0.05 opacity
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

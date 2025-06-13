@@ -13,8 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  final List<String> _items = List.generate(10, (index) => 'Item ${index + 1}');
-
   @override
   Widget build(BuildContext context) {
     final destinations = [

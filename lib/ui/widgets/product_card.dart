@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:video_player/video_player.dart';
-import 'dart:async';
 
 class ProductCard extends StatefulWidget {
   final String title;
@@ -14,7 +13,7 @@ class ProductCard extends StatefulWidget {
   final EdgeInsetsGeometry? margin;
 
   const ProductCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.seller,
     required this.price,
