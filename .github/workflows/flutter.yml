@@ -91,11 +91,11 @@ jobs:
         # Temporarily ignore warnings to unblock the build
         flutter analyze || echo "Analyzer found issues but continuing with the build"
 
-    # Flutter format
-    - name: Run Flutter format
+    # Format code
+    - name: Run Dart format
       run: |
-        echo "Running Flutter format..."
-        flutter format .
+        echo "Running Dart format..."
+        dart format --set-exit-if-changed .
 
     # Cache dependencies
     - name: Cache Flutter packages
